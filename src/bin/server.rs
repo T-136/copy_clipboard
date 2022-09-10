@@ -6,13 +6,16 @@ use std::{
 use actix_web::{get, web, App, HttpResponse, HttpServer, Responder};
 use serde::{Deserialize, Serialize};
 
+
 #[get("/get_clipboard_text/{id}")]
 async fn get_clipboard_text(
     id: web::Path<String>,
 
+
     data: web::Data<Mutex<HashMap<String, String>>>, // values: Mutex<HashMap<String, String>>,
 ) -> impl Responder {
     println!("{:?}", id.as_str());
+
     let hashmap = data.lock().unwrap();
     println!("{:?}", hashmap);
     let value = hashmap.get(id.as_str());
@@ -45,6 +48,7 @@ async fn set_clipboard_text(
 
 #[actix_web::main]
 async fn main() -> std::io::Result<()> {
+    // FIXME: prevent overflow of hashmap someday
     let data: web::Data<Mutex<HashMap<String, String>>> =
         web::Data::new(Mutex::new(HashMap::new()));
     HttpServer::new(move || {
