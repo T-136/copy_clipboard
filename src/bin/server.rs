@@ -1,16 +1,11 @@
-use std::{
-    collections::{HashMap},
-    sync::{Mutex},
-};
+use std::{collections::HashMap, sync::Mutex};
 
 use actix_web::{get, web, App, HttpResponse, HttpServer, Responder};
 use serde::{Deserialize, Serialize};
 
-
 #[get("/get_clipboard_text/{id}")]
 async fn get_clipboard_text(
     id: web::Path<String>,
-
 
     data: web::Data<Mutex<HashMap<String, String>>>, // values: Mutex<HashMap<String, String>>,
 ) -> impl Responder {
@@ -57,7 +52,7 @@ async fn main() -> std::io::Result<()> {
             .service(get_clipboard_text)
             .route("/set_clipboard_text", web::post().to(set_clipboard_text))
     })
-    .bind(("127.0.0.1", 8080))?
+    .bind(("127.0.0.1", 8000))?
     .run()
     .await
 }
