@@ -7,18 +7,18 @@ edition = "2021"
 
 [dependencies]
 actix-web = "4"
-anyhow = "1.0"
 base64 = "0.13.0"
 clap = { version = "3.2.20", features = ["derive"] }
 clipboard = "0.5.0"
 dirs = "4.0.0"
 enigo = "*"
-log = "0.4.17"
+miette = { version = "5.3.0", features = ["fancy"] }
 rand = "0.8.5"
 reqwest = "*"
 rsa = "0.6.1"
 serde = {version = "1.0", features = ["derive"]}
 serde_json = "1.0"
 sha2 = "0.10.5"
+thiserror = "1.0.34"
 tokio = {version = "1", features = ["full"]} 
 urlencoding = "2.1.2"
